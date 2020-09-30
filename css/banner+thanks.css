@@ -38,6 +38,12 @@
     font-display: swap;
 }
 
+/* General  Подкинь его где-то сверху*/
+
+html {
+    overflow-x: hidden;
+}
+
 .container {
     max-width: 1340px;
     margin: 0px auto;
@@ -46,6 +52,7 @@
 
 body {
     margin: 0px;
+    overflow: hidden;
 }
 
 * {
@@ -80,6 +87,7 @@ button {
 }
 
 .main-button {
+    font-family: 'Basis Grotesque Pro', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,6 +104,8 @@ button {
     transition: background-color .3s;
 }
 
+/* //General Подкинь его где-то сверху*/
+
 /* Banner */
 
 .banner {
@@ -103,6 +113,21 @@ button {
     background-color: #282828;
     color: #FFFFFF;
     padding: 90px 0px;
+    position: relative;
+    z-index: 2;
+}
+
+.banner::before {
+    content: "";
+    position: absolute;
+    left: calc(50% - 40px);
+    top: -90px;
+    height: 257px;
+    width: 314px;
+    border-radius: 0px;
+    z-index: -1;
+
+    background-color: #212121;
 }
 
 .banner .main-button {
@@ -136,6 +161,10 @@ button {
     padding: 0px 10px 0px 8px;
 }
 
+.banner__caption--mobile {
+    display: none;
+}
+
 .banner__caption::before {
     content: "";
     position: absolute;
@@ -164,7 +193,7 @@ button {
 
 .banner__item {
     width: 33.333%;
-    margin-right: 30px;
+    margin-right: 20px;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -176,6 +205,7 @@ button {
 }
 
 .banner__item .number {
+    display: block;
     font-family: 'Druk Cyr', sans-serif;
     font-weight: 700;
     font-size: 24px;
@@ -316,7 +346,7 @@ button {
     min-height: 100px;
     position: absolute;
     left: 0px;
-    bottom: calc(100% + 8px);
+    bottom: calc(100% - 15px);
     opacity: 0;
     visibility: hidden;
     background-color: #212121;
@@ -331,6 +361,9 @@ button {
     width: 50%;
     position: relative;
     right: -50px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .banner__img__top-text {
@@ -379,6 +412,14 @@ button {
     margin-bottom: 10px;
 }
 
+.modal--banner input {
+    height: 40px;
+}
+
+.modal--banner .button {
+    height: 40px;
+}
+
 @media screen and (min-width: 1201px) {
     .banner__conditions__button:hover {
         color: #db8439;
@@ -393,4 +434,256 @@ button {
     }
 }
 
+@media screen and (max-width: 1340px ) {
+    .banner__img {
+        left: 20px;
+    }
+    
+    .banner__img__top-text {
+        font-size: 24px;
+        line-height: 110%;
+    }
+    
+    .banner__info__description {
+        align-items: center;
+    }
+    
+    .banner__info__time .caption {
+        text-align: center;
+    }
+    
+    .time-list {
+        justify-content: center;
+    }
+    
+    .time-item {
+        margin-right: 30px;
+    }
+    
+    .banner__info__subscribe {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .calc-people {
+        margin: 10px 0px 0px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .banner {
+        padding: 60px 0px;
+    }
+    
+    .banner__caption {
+        font-size: 48px;
+        line-height: 110%;
+    }
+    
+    .banner__caption::before {
+        height: 5px;
+    }
+    
+    .banner__caption {
+        margin-bottom: 55px;
+    }
+    
+    .banner__item {
+        font-size: 13px;
+        line-height: 120%;
+    }
+    
+    .banner__item .sub-info {
+        font-size: 12px;
+        line-height: 120%;
+    }
+    
+    .banner__info__time {
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .banner {
+        padding: 30px 0px;
+    }
+    
+    .banner::before {
+        display: none;
+    }
+    .banner__container {
+        flex-direction: column;
+    }
+    
+    .banner__info {
+        width: 100%;
+    }
+    
+    .banner__info .banner__caption {
+        display: none;
+    }
+    
+    .banner__img {
+        width: calc(100% + 20px);
+        order: -1;
+        margin-bottom: 30px;
+        left: 0px;
+        height: 220px;
+    }
+    
+    .banner__caption--mobile {
+        display: inline-block;
+        order: -1;
+        font-size: 36px;
+    }
+    
+    .banner__caption--mobile::before {
+        height: 4px;
+    }
+    
+    .banner__img__top-text {
+        font-size: 16px;
+        margin: -10px 0px 0px auto;
+    }
+    
+    .banner__img__brand {
+        font-size: 14px;
+        min-width: 104px;
+    }
+    
+    .banner__img__brand .logo-brand {
+        max-width: 14px;
+        max-height: 15px;
+        margin-bottom: 5px;
+    }
+    
+    .banner__list {
+        flex-direction: column;
+    }
+    
+    .banner__item {
+        width: 100%;
+        font-size: 16px;
+        line-height: 130%;
+        margin: 0px 0px 20px 0px;
+    }
+    
+    .banner__item:last-child {
+        margin-bottom: 0px;
+    }
+    
+    .banner__info__description {
+        flex-direction: column;
+    }
+    
+    .banner__info__subscribe {
+        align-items: center;
+        margin-top: 35px;
+        margin: 35px 0px 0px 0px;
+    }
+    
+    .banner .main-button {
+        margin-top: 30px;
+    }
+}
+
 /* //Banner */
+
+/* Thanks */
+
+.thanks {
+    font-family: 'Basis Grotesque Pro', sans-serif;
+    padding: 80px 0px;
+    background-color: #282828;
+}
+
+.thnaks__wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.thnaks__container {
+    max-width: 600px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.thnaks__container .main-caption {
+    font-family: 'Druk Cyr', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 110%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 27px;
+}
+
+.thnaks__text {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 150%;
+}
+
+.thnaks__ticket {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+    padding: 15px;
+    max-width: 332px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 150%;
+    background-color: #212121;
+}
+
+.thnaks__sub-text {
+    font-size: 14px;
+    line-height: 150%;
+    color: #E0E0E0;
+    margin-bottom: 20px;
+}
+
+.thnaks__footer {
+    margin-top: 10px;
+    padding-top: 30px;
+    border-top: 1px solid #5A4343;
+}
+
+.thnaks__footer .main-button {
+    margin: 20px auto 0px;
+    height: 40px;
+    max-width: 270px;
+}
+
+@media screen and (max-width: 767px) {
+    .thanks {
+        padding: 40px 0px;
+    }
+
+    .thnaks__container .main-caption {
+        font-size: 36px;
+        line-height: 110%;
+        margin-bottom: 20px;
+    }
+
+    .thnaks__text {
+        font-size: 14px;
+        line-height: 150%;
+    }
+
+    .thnaks__ticket {
+        font-size: 16px;
+        margin: 20px auto;
+    }
+
+    .thnaks__footer {
+        padding-top: 20px;
+    }
+
+    .thnaks__footer .main-button {
+        max-width: 280px;
+    }
+}
+
+/* //Thanks */
