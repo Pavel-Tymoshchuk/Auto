@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto</title>
+    <link rel="stylesheet" href="./css/banner+thanks.css">
+</head>
+<body>
+    <section class="banner">
+        <div class="banner__wrapper container">
+            <div class="banner__container">
+                <div class="banner__info">
+                    <p class="banner__caption">розыгрыш Авто!</p>
+                    <ul class="banner__list">
+                        <li class="banner__item">
+                            <span class="number">1</span>
+                            <p class="text">Оставить нам свои контактные данные</p>
+                        </li>
+                        <li class="banner__item">
+                            <span class="number">2</span>
+                            <p class="text">Оплатить билет стоимостью в 20 ZL </p>
+                            <p class="sub-info"><span>-50%</span> для наших подписчиков</p>
+                        </li>
+                        <li class="banner__item">
+                            <span class="number">3</span>
+                            <p class="text">15 декабря следить за результатами розыгрыша</p>
+                        </li>
+                    </ul>
+                    <div class="banner__info__description">
+                        <div class="banner__info__time js-time" data-time="Jan 5, 2021 15:37:25">
+                            <p class="caption">до конца розыгрыша осталось:</p>
+                            <ul class="time-list">
+                                <li class="time-item">
+                                    <p class="number js-days"></p>
+                                    <p class="text">дней</p>
+                                </li>
+                                <li class="time-item">
+                                    <p class="number js-hours"></p>
+                                    <p class="text">часов</p>
+                                </li>
+                                <li class="time-item">
+                                    <p class="number js-minutes"></p>
+                                    <p class="text">минуты</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="banner__info__subscribe">
+                            <p class="text">В розыгрыше уже участвуют: </p>
+                            <div class="calc-people js-calc-people">1273</div>
+                        </div>
+                    </div>
+                    <div class="banner__conditions js-drop-item">
+                        <button class="banner__conditions__button js-drop-button">
+                            <span class="decor">i</span>
+                            <span class="text">Условия проведения розыгрыша</span>
+                        </button>
+                        <div class="banner__conditions__info">Описание проведения розыгрыша</div>
+                    </div>
+                    <button class="main-button">хочу участвовать!</button>
+                </div>
+                <div class="banner__img" style="background-image: url(./img/banner-img.png)">
+                    <p class="banner__img__top-text">РЕАЛЬНЫЙ ШАНС ВЫИГРАТЬ АВТО за 20 ZL !!! </p>
+                    <div class="banner__img__brand">
+                        <img src="./img/logo-car.png" alt="РЕАЛЬНЫЙ ШАНС ВЫИГРАТЬ АВТО за 20 ZL !!!" class="logo-brand">
+                        <p class="text">Renault Megan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            // Set calc people 
+            let calcNumber = document.querySelector('.js-calc-people');
+            let arrayNumber = calcNumber.textContent.split("");
+            calcNumber.innerHTML = "";
+            
+            arrayNumber.forEach(item => {
+                let element = document.createElement('span');
+                element.innerHTML = item;
+                calcNumber.append(element);
+            });
+            // Set calc people
+            
+            // Time 
+        
+            let getData = document.querySelector('.js-time').getAttribute('data-time');
+            var countDownDate = new Date(`${getData}`).getTime();
+            let setDays = document.querySelector('.js-days');
+            let setHours = document.querySelector('.js-hours');
+            let setMinutes = document.querySelector('.js-minutes');
+
+            var clearTimer = setInterval(function() {
+
+                var now = new Date().getTime();
+
+                var distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                
+                if(days < 10) {
+                    days = "0" + days;
+                }
+                if(hours < 10) {
+                    hours = "0" + hours;
+                }
+                if(minutes < 10) {
+                    minutes = "0" + minutes;
+                }
+                
+                setDays.innerHTML = days;
+                setHours.innerHTML = hours;
+                setMinutes.innerHTML = minutes;
+                
+                if (distance < 0) {
+                    clearInterval(clearTimer);
+                    setDays.innerHTML = 0;
+                    setHours.innerHTML = 0;
+                    setMinutes.innerHTML = 0;
+                }
+            }, 1000);
+            
+        // //Time
+        
+        // Drop list 
+        let dropList = document.querySelectorAll('.js-drop-item');
+
+        document.addEventListener('click', function(e){
+            let element = e.target;
+            
+            if(element.closest('.js-drop-button')){
+                let isActive = element.closest('.js-drop-item').classList.contains('active')? true: false;
+                
+                dropList.forEach(item => {item.classList.remove('active')});
+                
+                if(isActive)
+                    element.closest('.js-drop-item').classList.remove('active');
+                else
+                    element.closest('.js-drop-item').classList.add('active');
+                    
+            }
+        });
+        
+        document.querySelector('body').addEventListener('click', function(event){
+            
+            let dropItem = event.target.closest('.js-drop-item');
+            
+            if(!dropItem) {
+                document.querySelectorAll('.js-drop-item').forEach(function(item){
+                    item.classList.remove('active');
+                }); 
+            }
+            if(dropItem) {
+                if(!dropItem.classList.contains("active")) {
+                    document.querySelectorAll('.js-drop-item').forEach(function(item){
+                        item.classList.remove('active');
+                    });
+                }
+            }
+            
+        });
+        
+        // Drop list
+        });
+    </script>
+</body>
+</html>
